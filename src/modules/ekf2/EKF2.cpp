@@ -805,6 +805,9 @@ void EKF2::PublishAidSourceStatus(const hrt_abstime &timestamp)
 	// mag 3d
 	PublishAidSourceStatus(_ekf.aid_src_mag(), _status_mag_pub_last, _estimator_aid_src_mag_pub);
 
+	// gravity
+	PublishAidSourceStatus(_ekf.aid_src_gravity(), _status_gravity_pub_last, _estimator_aid_src_gravity_pub);
+
 	// aux velocity
 	PublishAidSourceStatus(_ekf.aid_src_aux_vel(), _status_aux_vel_pub_last, _estimator_aid_src_aux_vel_pub);
 
@@ -1099,7 +1102,7 @@ void EKF2::PublishInnovations(const hrt_abstime &timestamp)
 	_ekf.getHaglInnov(innovations.hagl);
 	_ekf.getHaglRateInnov(innovations.hagl_rate);
 	_ekf.getTerrainFlowInnov(innovations.terr_flow);
-	_ekf.getGravInnov(innovations.gravity);
+	_ekf.getGravityInnov(innovations.gravity);
 	// Not yet supported
 	innovations.aux_vvel = NAN;
 
@@ -1150,6 +1153,7 @@ void EKF2::PublishInnovationTestRatios(const hrt_abstime &timestamp)
 	_ekf.getHaglInnovRatio(test_ratios.hagl);
 	_ekf.getHaglRateInnovRatio(test_ratios.hagl_rate);
 	_ekf.getTerrainFlowInnovRatio(test_ratios.terr_flow[0]);
+	_ekf.getGravityInnovRatio(test_ratios.gravity[0]);
 	// Not yet supported
 	test_ratios.aux_vvel = NAN;
 
@@ -1176,6 +1180,7 @@ void EKF2::PublishInnovationVariances(const hrt_abstime &timestamp)
 	_ekf.getHaglInnovVar(variances.hagl);
 	_ekf.getHaglRateInnovVar(variances.hagl_rate);
 	_ekf.getTerrainFlowInnovVar(variances.terr_flow);
+	_ekf.getGravityInnovVar(variances.gravity);
 	// Not yet supported
 	variances.aux_vvel = NAN;
 

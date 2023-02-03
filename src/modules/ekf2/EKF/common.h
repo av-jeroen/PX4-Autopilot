@@ -127,8 +127,9 @@ enum class PositionSensor : uint8_t {
 };
 
 enum class ImuCtrl : uint8_t {
-	GyroBias  = (1<<0),
-	AccelBias = (1<<1),
+	GyroBias      = (1<<0),
+	AccelBias     = (1<<1),
+	GravityVector = (1<<2),
 };
 
 enum GnssCtrl : uint8_t {
@@ -394,7 +395,7 @@ struct parameters {
 	float ev_hgt_bias_nsd{0.13f};           ///< process noise for vision height bias estimation (m/s/sqrt(Hz))
 
 	// gravity fusion
-	float gravity_noise{1.0f};		///< accelerometer measurement gaussian noise (m/s**2)
+	float gravity_noise{1.0f};              ///< accelerometer measurement gaussian noise (m/s**2)
 
 	// optical flow fusion
 	float flow_noise{0.15f};                ///< observation noise for optical flow LOS rate measurements (rad/sec)
